@@ -41,7 +41,7 @@ public class Jdk8Test {
 
         final LocalDateTime enrolled = of(2015, Month.JANUARY, 1, 6, 30);
         final LocalDateTime updated = of(2015, Month.JANUARY, 2, 10, 00);
-        Product created = new Product("new001", "Good Product with Big Sale!!!", enrolled, updated);
+        Product created = new Product("new001", "Good Product with Big Sale!!!", 100, enrolled, updated);
 
         r.save(created);
 
@@ -56,7 +56,7 @@ public class Jdk8Test {
     @Test
     public void optional() throws Exception {
 
-        r.save(new Product("yes-id", "Good Product with Big Sale!!!", now(), now()));
+        r.save(new Product("yes-id", "Good Product with Big Sale!!!", 100, now(), now()));
 
         Optional<Product> searched = r.findOneByProductId("no-id");
 
@@ -68,7 +68,7 @@ public class Jdk8Test {
     public void defaultMethod() throws Exception {
         final LocalDateTime enrolled = of(2015, Month.JANUARY, 1, 6, 30);
         final LocalDateTime updated = of(2015, Month.JANUARY, 2, 10, 00);
-        Product created = new Product("new001", "Good Product with Big Sale!!!", enrolled, updated);
+        Product created = new Product("new001", "Good Product with Big Sale!!!", 100, enrolled, updated);
 
         r.save(created);
 

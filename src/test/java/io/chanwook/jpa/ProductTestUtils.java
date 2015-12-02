@@ -15,9 +15,9 @@ public class ProductTestUtils {
     }
 
     public static void createTestProduct(ProductJpaRepository r, int max, LocalDateTime time) {
-        IntStream.range(0, max).forEach(row -> {
+        IntStream.range(1, max + 1).forEach(row -> {
             // each save to simple test...
-            r.save(new Product("PRD-" + String.valueOf(row), "Good Product~", time, time));
+            r.save(new Product("PRD-" + String.valueOf(row), "Good Product~", row * 1000, time, time));
         });
     }
 }

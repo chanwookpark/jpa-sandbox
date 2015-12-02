@@ -11,6 +11,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.querydsl.QSort;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,14 +56,27 @@ public class QueryDslTest {
     public void ordering() throws Exception {
         createTestProduct(r, 3);
 
-        // if single order statement, using OrderSpecifier directly
         final List<Product> list = (List<Product>) r.findAll(QProduct.product.productId.like("PRD-%"),
                 new QSort(new OrderSpecifier<>(Order.DESC, QProduct.product.productId)));
 
         assert 3 == list.size();
-        assert "PRD-2".equals(list.get(0).getProductId());
-        assert "PRD-1".equals(list.get(1).getProductId());
-        assert "PRD-0".equals(list.get(2).getProductId());
+        assert "PRD-3".equals(list.get(0).getProductId());
+        assert "PRD-2".equals(list.get(1).getProductId());
+        assert "PRD-1".equals(list.get(2).getProductId());
     }
 
+    @Transactional
+    @Test
+    public void paging() throws Exception {
+        createTestProduct(r, 21);
+
+        final Page<Product> page = r.findAll(QProduct.product.displayName.like("Good%"),
+                new PageRequest(3, 4, new QSort(new OrderSpecifier<>(Order.DESC, QProduct.product.salesPrice))));
+
+        assert 4 == page.getSize();
+        assert page.getContent().get(0).getProductId().endsWith("9");
+        assert page.getContent().get(1).getProductId().endsWith("8");
+        assert page.getContent().get(2).getProductId().endsWith("7");
+        assert page.getContent().get(3).getProductId().endsWith("6");
+    }
 }

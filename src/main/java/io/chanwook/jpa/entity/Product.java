@@ -25,6 +25,9 @@ public class Product implements Serializable {
     @Column(length = 200, nullable = false)
     private String displayName;
 
+    @Column
+    private long salesPrice;
+
     @Column(nullable = false)
     private LocalDateTime enrolled;
 

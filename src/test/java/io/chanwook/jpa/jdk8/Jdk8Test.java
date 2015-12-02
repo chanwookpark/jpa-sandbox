@@ -17,9 +17,9 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static io.chanwook.jpa.ProductTestUtils.createTestProduct;
 import static java.time.LocalDateTime.now;
 import static java.time.LocalDateTime.of;
 
@@ -81,7 +81,7 @@ public class Jdk8Test {
 
     @Test
     public void stream() throws Exception {
-        createTestProduct(10);
+        createTestProduct(r, 10);
 
         try (Stream<Product> stream = r.findAllByCustomQueryWithStream()) {
             assert stream.map(Product::getProductId).allMatch(id -> id.startsWith("PRD-"));
@@ -92,7 +92,7 @@ public class Jdk8Test {
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void async() throws Exception {
         final int size = 10;
-        createTestProduct(size);
+        createTestProduct(r, size);
 
         r.flush(); // sync db
 
@@ -113,10 +113,4 @@ public class Jdk8Test {
         r.deleteAllInBatch();
     }
 
-    private void createTestProduct(int max) {
-        IntStream.range(0, max).forEach(row -> {
-            // each save to simple test...
-            r.save(new Product("PRD-" + String.valueOf(row), "Good Product~", now(), now()));
-        });
-    }
 }

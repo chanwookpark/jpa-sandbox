@@ -1,6 +1,8 @@
 package io.chanwook.jpa.jdk8;
 
 import io.chanwook.jpa.App;
+import io.chanwook.jpa.entity.Product;
+import io.chanwook.jpa.repository.ProductJpaRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

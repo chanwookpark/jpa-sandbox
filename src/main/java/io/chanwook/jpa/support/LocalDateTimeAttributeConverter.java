@@ -1,4 +1,4 @@
-package io.chanwook.jpa.jdk8;
+package io.chanwook.jpa.support;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

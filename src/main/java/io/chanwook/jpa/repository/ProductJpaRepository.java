@@ -1,5 +1,6 @@
-package io.chanwook.jpa.jdk8;
+package io.chanwook.jpa.repository;
 
+import io.chanwook.jpa.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.scheduling.annotation.Async;

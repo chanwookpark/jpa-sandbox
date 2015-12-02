@@ -1,4 +1,4 @@
-package io.chanwook.jpa.jdk8;
+package io.chanwook.jpa.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

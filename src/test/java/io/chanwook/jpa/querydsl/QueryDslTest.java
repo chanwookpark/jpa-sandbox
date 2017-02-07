@@ -50,7 +50,6 @@ public class QueryDslTest {
         assert 3 == list.size();
     }
 
-
     @Transactional
     @Test
     public void ordering() throws Exception {

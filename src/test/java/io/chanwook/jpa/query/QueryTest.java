@@ -8,14 +8,14 @@ import io.chanwook.jpa.repository.MemberAssetRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * @author chanwook
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {App.class})
+@SpringBootTest(classes = {App.class})
 public class QueryTest {
 
     @Autowired

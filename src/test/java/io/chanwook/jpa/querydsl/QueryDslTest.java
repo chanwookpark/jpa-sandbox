@@ -1,8 +1,8 @@
 package io.chanwook.jpa.querydsl;
 
-import com.mysema.query.types.Order;
-import com.mysema.query.types.OrderSpecifier;
-import com.mysema.query.types.expr.BooleanExpression;
+import com.querydsl.core.types.Order;
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import io.chanwook.jpa.App;
 import io.chanwook.jpa.entity.Product;
 import io.chanwook.jpa.entity.QProduct;
@@ -10,7 +10,7 @@ import io.chanwook.jpa.repository.ProductJpaRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.querydsl.QSort;
@@ -27,7 +27,7 @@ import static java.time.LocalDateTime.now;
  * @author chanwook
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {App.class})
+@SpringBootTest(classes = {App.class})
 public class QueryDslTest {
 
     @Autowired
